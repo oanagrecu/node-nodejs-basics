@@ -10,17 +10,19 @@ const copy = async () => {
 
 	try {
 		await stat(sourceFolder);
-	} catch (err) {
+	} catch {
 		throw new Error("FS operation failed");
 	}
 
+	let destinationExists = true;
 	try {
 		await stat(destinationFolder);
+	} catch {
+		destinationExists = false;
+	}
+
+	if (destinationExists) {
 		throw new Error("FS operation failed");
-	} catch (err) {
-		if (err.code !== "ENOENT") {
-			throw new Error("FS operation failed");
-		}
 	}
 
 	await mkdir(destinationFolder, {recursive: true});
@@ -30,7 +32,6 @@ const copy = async () => {
 	for (const file of files) {
 		const sourceFilePath = path.join(sourceFolder, file);
 		const destinationFilePath = path.join(destinationFolder, file);
-
 		await copyFile(sourceFilePath, destinationFilePath);
 	}
 
