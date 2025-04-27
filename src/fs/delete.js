@@ -5,6 +5,7 @@ import {fileURLToPath} from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const remove = async () => {
+<<<<<<< HEAD
 	const filePath = path.join(__dirname, "files", "fileToRemove.txt");
 
 	try {
@@ -16,3 +17,10 @@ const remove = async () => {
 };
 
 await remove();
+=======
+	// Write your code here
+};
+
+await remove();
+
+>>>>>>> read-file
