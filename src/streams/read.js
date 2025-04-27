@@ -14,7 +14,6 @@ const read = async () => {
 		console.error("Error reading the file:", err.message);
 	});
 
-    
 	await new Promise((resolve) => stream.on("end", resolve));
 };
 
